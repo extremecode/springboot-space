@@ -44,7 +44,7 @@
                 <executions>
                     <execution>
                         <id>get-local-ip</id>
-                        <phase>initialize</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>execute</goal>
                         </goals>
@@ -63,7 +63,7 @@
                                     if (!(address.getHostAddress().startsWith("0"))) {
                                         println "Your IP address is: "
                                         println address;
-                                        docker.host.address=address.getHostAddress();
+                                        project.properties["docker.host.address"]=address.getHostAddress();
                                     }
                                 }
                             </source>
