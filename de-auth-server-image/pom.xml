@@ -152,8 +152,8 @@
                                 <user>2000:2000</user>
 
                                 <wait>
-                                    <time>40000</time>
-                                    <kill>5000</kill>
+                                    <time>900000</time>
+                                    <kill>30000</kill>
                                     <http>
                                         <!--suppress MavenModelInspection -->
                                         <url>https://${docker.host.address}:${app.port.https}/actuator/health</url>
