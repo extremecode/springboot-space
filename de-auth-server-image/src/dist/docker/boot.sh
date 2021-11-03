@@ -29,8 +29,8 @@ server.ssl.trust-store-password=dataelicit@01
 server.ssl.enabled=true" >> $DEPLOYMENT_INSTALL_DIR/application.properties
 
 $JAVA_HOME/bin/keytool -genkey -alias de -keyalg rsa -sigalg SHA256withRSA -keysize 2048 -dname "CN=$DEPLOYMENT_HOSTNAME,OU=DE,O=DE,L=Bangalore,ST=KA,C=India" -keystore $DEPLOYMENT_INSTALL_DIR/de.keystore -keypass dataelicit@01 -storepass dataelicit@01 -storetype PKCS12
-$JAVA_HOME/bin/keytool -export -alias de -file de.cer -keystore $DEPLOYMENT_INSTALL_DIR/de.keystore -storetype PKCS12 -storepass dataelicit@01
-$JAVA_HOME/bin/keytool -import -alias de -file de.cer -noprompt -keystore $DEPLOYMENT_INSTALL_DIR/de.truststore -storetype PKCS12 -storepass dataelicit@01
+$JAVA_HOME/bin/keytool -export -alias de -file $DEPLOYMENT_INSTALL_DIR/de.cer -keystore $DEPLOYMENT_INSTALL_DIR/de.keystore -storetype PKCS12 -storepass dataelicit@01
+$JAVA_HOME/bin/keytool -import -alias de -file $DEPLOYMENT_INSTALL_DIR/de.cer -noprompt -keystore $DEPLOYMENT_INSTALL_DIR/de.truststore -storetype PKCS12 -storepass dataelicit@01
 
 exec ${JAVA_HOME}/jre/bin/java -Djavax.net.ssl.trustStorePassword=dataelicit@01 -Djavax.net.ssl.trustStore=$DEPLOYMENT_INSTALL_DIR/de.truststore  -jar $DEPLOYMENT_INSTALL_DIR/app.jar
 
