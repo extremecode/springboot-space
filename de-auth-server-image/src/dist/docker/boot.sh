@@ -13,7 +13,7 @@ if [[ -z "${DEPLOYMENT_INSTALL_DIR}" ]]; then
 fi
 
 echo "`date +\"%F %T\"` [INFO] Setting server SSL properties."
-echo "security.require-ssl=true
+echo "
 server.ssl.protocol=TLS
 server.ssl.enabled-protocols=TLSv1.3
 server.ssl.ciphers=TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
