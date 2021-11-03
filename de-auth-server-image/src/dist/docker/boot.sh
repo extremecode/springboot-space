@@ -32,5 +32,5 @@ $JAVA_HOME/bin/keytool -genkey -alias de -keyalg rsa -sigalg SHA256withRSA -keys
 $JAVA_HOME/bin/keytool -export -alias de -file $DEPLOYMENT_INSTALL_DIR/de.cer -keystore $DEPLOYMENT_INSTALL_DIR/de.keystore -storetype PKCS12 -storepass dataelicit@01
 $JAVA_HOME/bin/keytool -import -alias de -file $DEPLOYMENT_INSTALL_DIR/de.cer -noprompt -keystore $DEPLOYMENT_INSTALL_DIR/de.truststore -storetype PKCS12 -storepass dataelicit@01
 
-exec ${JAVA_HOME}/jre/bin/java -Djavax.net.ssl.trustStorePassword=dataelicit@01 -Djavax.net.ssl.trustStore=$DEPLOYMENT_INSTALL_DIR/de.truststore  -jar $DEPLOYMENT_INSTALL_DIR/app.jar
+exec ${JAVA_HOME}/jre/bin/java -Dloader.path=$DEPLOYMENT_INSTALL_DIR  -Djavax.net.ssl.trustStorePassword=dataelicit@01 -Djavax.net.ssl.trustStore=$DEPLOYMENT_INSTALL_DIR/de.truststore  -cp $DEPLOYMENT_INSTALL_DIR/app.jar org.springframework.boot.loader.PropertiesLauncher
 

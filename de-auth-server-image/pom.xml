@@ -152,7 +152,7 @@
                                 <user>2000:2000</user>
 
                                 <wait>
-                                    <time>900000</time>
+                                    <time>60000</time>
                                     <kill>30000</kill>
                                     <http>
                                         <!--suppress MavenModelInspection -->
