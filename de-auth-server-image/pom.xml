@@ -114,6 +114,7 @@
                                     <IMAGE_BUILD_VERSION>${project.version}</IMAGE_BUILD_VERSION>
                                     <IMAGE_BUILD_NUMBER>1.0.1</IMAGE_BUILD_NUMBER>
                                     <IMAGE_BUILD_TIMESTAMP>${build.timestamp}</IMAGE_BUILD_TIMESTAMP>
+                                    <DEPLOYMENT_INSTALL_DIR>${app.install.dir}</DEPLOYMENT_INSTALL_DIR>
                                 </env>
                                 <volumes>
                                     <volume>/var${app.install.dir}</volume>
