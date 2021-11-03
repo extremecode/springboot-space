@@ -139,6 +139,7 @@
                                     <IMAGE_BUILD_NUMBER>1.0.1</IMAGE_BUILD_NUMBER>
                                     <IMAGE_BUILD_TIMESTAMP>${build.timestamp}</IMAGE_BUILD_TIMESTAMP>
                                     <DEPLOYMENT_INSTALL_DIR>${app.install.dir}</DEPLOYMENT_INSTALL_DIR>
+                                    <DE_BOOT>${app.install.dir}/startup/boot.d</DE_BOOT>
                                 </env>
                                 <volumes>
                                     <volume>/var${app.install.dir}</volume>
@@ -160,7 +161,7 @@
                                     <descriptor>assembly.xml</descriptor>
                                 </assembly>
                                 <entryPoint>
-                                    <shell>${app.install.dir}/boot.sh</shell>
+                                    <shell>${app.install.dir}/startup/boot.sh</shell>
                                 </entryPoint>
                             </build>
                             <run>
