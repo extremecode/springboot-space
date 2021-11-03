@@ -219,6 +219,7 @@
                                     <run>adduser -u 2000 -S deuser -G deuser -h ${app.install.dir}</run>
                                     <run>chown -R deuser:deuser /var${app.install.dir}</run>
                                     <run>chown -R deuser:deuser ${app.install.dir}</run>
+                                    <run>chmod -R 750 ${app.install.dir}</run>
                                 </runCmds>
                                 <user>2000</user>
                                 <assembly>
@@ -312,9 +313,9 @@
                         <version>2.12</version>
                     </dependency>
                 </dependencies>
-<!--                <configuration>-->
-<!--                    <excludedGroups>com.de.use.cases.server.IntegrationTest</excludedGroups>-->
-<!--                </configuration>-->
+                <configuration>
+                    <excludedGroups>com.de.usecase.springboot.IntegrationTest</excludedGroups>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -327,9 +328,9 @@
                         <version>2.12</version>
                     </dependency>
                 </dependencies>
-<!--                <configuration>-->
-<!--                    <groups>com.de.use.cases.server.IntegrationTest</groups>-->
-<!--                </configuration>-->
+                <configuration>
+                    <groups>com.de.usecase.springboot.IntegrationTest</groups>
+                </configuration>
                 <executions>
                     <execution>
                         <id>integration-test</id>
