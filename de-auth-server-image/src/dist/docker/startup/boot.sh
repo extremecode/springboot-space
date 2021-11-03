@@ -3,12 +3,12 @@
 set -e
 umask 0027
 
-echo "`date +\"%F %T\"` [INFO] Running DE boot scripts..."
+echo "`date +\"%F %T\"` [INFO] Running DE Auth server boot scripts..."
 for script in $(ls -1 $DE_BOOT/*.sh)
 do
 	. $script;
 done
-echo "`date +\"%F %T\"` [INFO] Completed execution of all DE boot scripts..."
+echo "`date +\"%F %T\"` [INFO] Completed execution of all DE Auth server boot scripts..."
 
 if [[ -z "${DEPLOYMENT_INSTALL_DIR}" ]]; then
     echo "`date +\"%F %T\"` [INFO] DE service variable DEPLOYMENT_INSTALL_DIR is not set. Default value '/opt/DE' will be used."
