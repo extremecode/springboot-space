@@ -38,6 +38,40 @@
 
         <plugins>
             <plugin>
+                <groupId>org.codehaus.groovy.maven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>get-local-ip</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <classpath>
+                                <element>
+                                    <groupId>commons-lang</groupId>
+                                    <artifactId>commons-lang</artifactId>
+                                    <version>2.4</version>
+                                </element>
+                            </classpath>
+                            <source>
+                                def addr = InetAddress.getLocalHost();
+                                java.net.InetAddress[] addresses=InetAddress.getAllByName(addr.getHostName());
+                                for (address in addresses) {
+                                    if (!(address.getHostAddress().startsWith("0"))) {
+                                        println "Your IP address is: "
+                                        println address;
+                                        docker.host.address=address.getHostAddress();
+                                    }
+                                }
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>port-allocator-maven-plugin</artifactId>
                 <version>1.2</version>
