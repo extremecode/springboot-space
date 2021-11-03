@@ -38,6 +38,26 @@
 
         <plugins>
             <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>port-allocator-maven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>allocate-ports</goal>
+                        </goals>
+                        <configuration>
+                            <ports>
+                                <port>
+                                    <name>de.port.postgres</name>
+                                </port>
+                            </ports>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
@@ -187,7 +207,7 @@
                                     <POSTGRES_PASSWORD>${postgres.default.pass}</POSTGRES_PASSWORD>
                                 </env>
                                 <ports>
-                                    <port>de.port.postgres:5432</port>
+                                    <port>${de.port.postgres}:5432</port>
                                 </ports>
                                 <wait>
                                     <log>server started</log>
