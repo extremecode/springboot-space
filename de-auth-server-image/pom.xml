@@ -142,7 +142,7 @@
                             <run>
                                 <env>
                                     <APP_SERVICE>app</APP_SERVICE>
-                                    <EXTERNAL_ACCESS_HOST>${docker.host.address}</EXTERNAL_ACCESS_HOST>
+                                    <DEPLOYMENT_HOSTNAME>${docker.host.address}</DEPLOYMENT_HOSTNAME>
                                     <EXTERNAL_ACCESS_PORT>443</EXTERNAL_ACCESS_PORT>
                                 </env>
                                 <ports>
