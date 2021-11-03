@@ -13,6 +13,9 @@
     <groupId>com.de.usecase.springboot</groupId>
     <artifactId>de-auth-server-image</artifactId>
     <packaging>pom</packaging>
+    <properties>
+        <postgres.default.pass>postgres12</postgres.default.pass>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -94,6 +97,7 @@
                     <verbose>true</verbose>
                     <showLogs>true</showLogs>
                     <removeVolumes>true</removeVolumes>
+                    <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
                     <images>
                         <image>
                             <alias>${product.image.name}</alias>
@@ -140,10 +144,16 @@
                                 </entryPoint>
                             </build>
                             <run>
+                                <dependsOn>
+                                    <container>postgresdatabase</container>
+                                </dependsOn>
                                 <env>
-                                    <APP_SERVICE>app</APP_SERVICE>
                                     <DEPLOYMENT_HOSTNAME>${docker.host.address}</DEPLOYMENT_HOSTNAME>
-                                    <EXTERNAL_ACCESS_PORT>443</EXTERNAL_ACCESS_PORT>
+                                    <DEPLOYMENT_DB_SVC_NAME>${docker.host.address}</DEPLOYMENT_DB_SVC_NAME>
+                                    <DEPLOYMENT_DB_SVC_PORT>${de.port.postgres}</DEPLOYMENT_DB_SVC_PORT>
+                                    <DEPLOYMENT_DB_SVC_DATABASE_NAME>postgres</DEPLOYMENT_DB_SVC_DATABASE_NAME>
+                                    <DEPLOYMENT_DB_SVC_PASSWORD>${postgres.default.pass}</DEPLOYMENT_DB_SVC_PASSWORD>
+                                    <DEPLOYMENT_DB_SVC_USER_NAME>postgres</DEPLOYMENT_DB_SVC_USER_NAME>
                                 </env>
                                 <ports>
                                     <port>app.port.http:8080</port>
@@ -162,6 +172,33 @@
                                         <allowAllHosts>true</allowAllHosts>
                                     </http>
                                 </wait>
+                                <network>
+                                    <mode>custom</mode>
+                                    <name>deauth</name>
+                                    <alias>deauthserver</alias>
+                                </network>
+                            </run>
+                        </image>
+                        <image>
+                            <alias>postgresdatabase</alias>
+                            <name>postgres:12.4</name>
+                            <run>
+                                <env>
+                                    <POSTGRES_PASSWORD>${postgres.default.pass}</POSTGRES_PASSWORD>
+                                </env>
+                                <ports>
+                                    <port>de.port.postgres:5432</port>
+                                </ports>
+                                <wait>
+                                    <log>server started</log>
+                                    <time>30000</time>
+                                    <kill>5000</kill>
+                                </wait>
+                                <network>
+                                    <mode>custom</mode>
+                                    <name>deauth</name>
+                                    <alias>dedb</alias>
+                                </network>
                             </run>
                         </image>
                     </images>
