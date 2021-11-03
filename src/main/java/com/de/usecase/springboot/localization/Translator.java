@@ -22,7 +22,7 @@ public class Translator {
 
     public String toLocale(String msgCode) {
         Locale locale = LocaleContextHolder.getLocale();
-        logger.log(Level.INFO,"locale:"+locale.getCountry() +":"+locale.getDisplayName());
+        logger.log(Level.FINE,"locale:"+locale.getCountry() +":"+locale.getDisplayName());
         return messageSource.getMessage(msgCode, null, locale);
     }
 }
