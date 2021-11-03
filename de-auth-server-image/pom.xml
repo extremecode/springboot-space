@@ -38,23 +38,6 @@
 
         <plugins>
             <plugin>
-                <groupId>org.codehaus.groovy.maven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <source>
-                                project.properties["docker.host.address"] = InetAddress.getLocalHost().getHostName()
-                            </source>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>port-allocator-maven-plugin</artifactId>
                 <version>1.2</version>
@@ -187,7 +170,7 @@
                                 </dependsOn>
                                 <env>
                                     <DEPLOYMENT_HOSTNAME>${docker.host.address}</DEPLOYMENT_HOSTNAME>
-                                    <DEPLOYMENT_DB_SVC_NAME>${docker.host.address}</DEPLOYMENT_DB_SVC_NAME>
+                                    <DEPLOYMENT_DB_SVC_NAME>postgresdb</DEPLOYMENT_DB_SVC_NAME>
                                     <DEPLOYMENT_DB_SVC_PORT>${de.port.postgres}</DEPLOYMENT_DB_SVC_PORT>
                                     <DEPLOYMENT_DB_SVC_DATABASE_NAME>postgres</DEPLOYMENT_DB_SVC_DATABASE_NAME>
                                     <DEPLOYMENT_DB_SVC_PASSWORD>${postgres.default.pass}</DEPLOYMENT_DB_SVC_PASSWORD>
@@ -210,15 +193,13 @@
                                         <allowAllHosts>true</allowAllHosts>
                                     </http>
                                 </wait>
-                                <network>
-                                    <mode>custom</mode>
-                                    <name>deauth</name>
-                                    <alias>deauthserver</alias>
-                                </network>
+                                <links>
+                                    <link>postgresdb:postgresdb</link>
+                                </links>
                             </run>
                         </image>
                         <image>
-                            <alias>postgresdatabase</alias>
+                            <alias>postgresdb</alias>
                             <name>postgres:12.4</name>
                             <run>
                                 <env>
@@ -232,11 +213,11 @@
                                     <time>30000</time>
                                     <kill>5000</kill>
                                 </wait>
-                                <network>
-                                    <mode>custom</mode>
-                                    <name>deauth</name>
-                                    <alias>dedb</alias>
-                                </network>
+<!--                                <network>-->
+<!--                                    <mode>custom</mode>-->
+<!--                                    <name>deauth</name>-->
+<!--                                    <alias>dedb</alias>-->
+<!--                                </network>-->
                             </run>
                         </image>
                     </images>
