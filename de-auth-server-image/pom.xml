@@ -156,7 +156,7 @@
                                     <kill>30000</kill>
                                     <http>
                                         <!--suppress MavenModelInspection -->
-                                        <url>http://${docker.host.address}:${app.port.http}/actuator/health</url>
+                                        <url>https://${docker.host.address}:${app.port.https}/actuator/health</url>
                                         <method>GET</method>
                                         <status>200</status>
                                         <allowAllHosts>true</allowAllHosts>
