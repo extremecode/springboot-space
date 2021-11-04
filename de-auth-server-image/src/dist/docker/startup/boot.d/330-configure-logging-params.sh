@@ -24,4 +24,4 @@ logging.max-history=${DE_LOG_MAX_HISTORY}
 logging.file-name=${DE_APP_NAME}
 logging.pattern.file=[$DE_LAUNCH_LOG_PREFIX] %d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%5p) 18737 --- [%t] %-40.40logger{39} : %m%n%wEx
 logging.pattern.console=[$DE_LAUNCH_LOG_PREFIX] %d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%5p) 18737 --- [%t] %-40.40logger{39} : %m%n%wEx
-"
+"  >> $DE_CONF_DIR/application.properties
