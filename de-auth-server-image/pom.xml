@@ -132,7 +132,7 @@
                                     <artifactId>de-auth-server-lib</artifactId>
                                     <version>${project.version}</version>
                                     <overWrite>false</overWrite>
-                                    <outputDirectory>${server.assemble.dir}</outputDirectory>
+                                    <outputDirectory>${server.assemble.dir}/lib</outputDirectory>
                                     <destFileName>app.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
@@ -172,19 +172,33 @@
                                     <IMAGE_BUILD_VERSION>${project.version}</IMAGE_BUILD_VERSION>
                                     <IMAGE_BUILD_NUMBER>1.0.1</IMAGE_BUILD_NUMBER>
                                     <IMAGE_BUILD_TIMESTAMP>${build.timestamp}</IMAGE_BUILD_TIMESTAMP>
-                                    <DEPLOYMENT_INSTALL_DIR>${app.install.dir}</DEPLOYMENT_INSTALL_DIR>
+                                    <DE_INSTALL_DIR>${app.install.dir}</DE_INSTALL_DIR>
+                                    <DE_CONF_DIR>${app.mount.dir}/conf</DE_CONF_DIR>
+                                    <DE_LOG_DIR>${app.mount.dir}/log</DE_LOG_DIR>
+                                    <DE_LIB_DIR>${app.install.dir}/lib</DE_LIB_DIR>
+                                    <DE_LOG_LEVEL>INFO</DE_LOG_LEVEL>
+                                    <DE_LOG_APP_LEVEL>INFO</DE_LOG_APP_LEVEL>
+                                    <DE_LOG_MAX_FILE_SIZE>50MB</DE_LOG_MAX_FILE_SIZE>
+                                    <DE_LOG_MAX_HISTORY>10</DE_LOG_MAX_HISTORY>
+                                    <DE_LOG_PATTERN>[${product.image.name}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%clr(%4p)]</DE_LOG_PATTERN>
+                                    <DE_APP_NAME>${product.image.name}</DE_APP_NAME>
+                                    <DE_LAUNCH_LOG_PREFIX>${product.image.name}</DE_LAUNCH_LOG_PREFIX>
+                                    <DE_STARTUP_DIR>${app.install.dir}/startup</DE_STARTUP_DIR>
                                     <DE_BOOT>${app.install.dir}/startup/boot.d</DE_BOOT>
                                 </env>
                                 <volumes>
-                                    <volume>/var${app.install.dir}</volume>
+                                    <volume>${app.mount.dir}/log</volume>
                                 </volumes>
                                 <optimise>true</optimise>
                                 <runCmds>
                                     <run>mkdir -p ${app.install.dir}</run>
-                                    <run>mkdir -p /var${app.install.dir}</run>
+                                    <run>mkdir -p ${app.mount.dir}/conf</run>
+                                    <run>mkdir -p ${app.mount.dir}/log</run>
+                                    <run>mkdir -p ${app.install.dir}/lib</run>
+                                    <run>mkdir -p ${app.mount.dir}</run>
                                     <run>addgroup -g 2000 -S deuser</run>
                                     <run>adduser -u 2000 -S deuser -G deuser -h ${app.install.dir}</run>
-                                    <run>chown -R deuser:deuser /var${app.install.dir}</run>
+                                    <run>chown -R deuser:deuser ${app.mount.dir}</run>
                                     <run>chown -R deuser:deuser ${app.install.dir}</run>
                                     <run>chmod -R 750 ${app.install.dir}</run>
                                 </runCmds>
@@ -203,12 +217,12 @@
                                     <container>postgresdatabase</container>
                                 </dependsOn>
                                 <env>
-                                    <DEPLOYMENT_HOSTNAME>${docker.host.address}</DEPLOYMENT_HOSTNAME>
-                                    <DEPLOYMENT_DB_SVC_NAME>${docker.host.address}</DEPLOYMENT_DB_SVC_NAME>
-                                    <DEPLOYMENT_DB_SVC_PORT>${de.port.postgres}</DEPLOYMENT_DB_SVC_PORT>
-                                    <DEPLOYMENT_DB_SVC_DATABASE_NAME>postgres</DEPLOYMENT_DB_SVC_DATABASE_NAME>
-                                    <DEPLOYMENT_DB_SVC_PASSWORD>${postgres.default.pass}</DEPLOYMENT_DB_SVC_PASSWORD>
-                                    <DEPLOYMENT_DB_SVC_USER_NAME>postgres</DEPLOYMENT_DB_SVC_USER_NAME>
+                                    <DE_HOSTNAME>${docker.host.address}</DE_HOSTNAME>
+                                    <DE_DB_SVC_NAME>${docker.host.address}</DE_DB_SVC_NAME>
+                                    <DE_DB_SVC_PORT>${de.port.postgres}</DE_DB_SVC_PORT>
+                                    <DE_DB_SVC_DATABASE_NAME>postgres</DE_DB_SVC_DATABASE_NAME>
+                                    <DE_DB_SVC_PASSWORD>${postgres.default.pass}</DE_DB_SVC_PASSWORD>
+                                    <DE_DB_SVC_USER_NAME>postgres</DE_DB_SVC_USER_NAME>
                                 </env>
                                 <ports>
                                     <port>app.port.http:8080</port>
