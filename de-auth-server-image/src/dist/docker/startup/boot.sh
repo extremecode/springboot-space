@@ -3,7 +3,7 @@
 set -e
 umask 0027
 
-$DE_STARTUP_DIR/helper.sh
+source $DE_STARTUP_DIR/helper.sh
 
 loginfo "Running DE Auth server boot scripts..."
 for script in $(ls -1 $DE_BOOT/*.sh)
