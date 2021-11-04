@@ -31,8 +31,6 @@
         <module>de-auth-server-lib</module>
         <module>de-auth-server-image</module>
     </modules>
-
-         
          
     <dependencies>
 
