@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if [[ -z "${DEPLOYMENT_CONF_DIR}" ]]; then
-    echo "`date +\"%F %T\"` [INFO] DE service variable DEPLOYMENT_CONF_DIR is not set. Default value '/opt/DE/conf' will be used."
+    loginfo "DE service variable DEPLOYMENT_CONF_DIR is not set. Default value '/opt/DE/conf' will be used."
     DEPLOYMENT_CONF_DIR="/opt/DE/conf"
 fi
 
-echo "`date +\"%F %T\"` [INFO] Setting server SSL properties."
+loginfo "Setting server SSL properties."
 echo "security.require-ssl=true
 server.ssl.protocol=TLS
 server.ssl.enabled-protocols=TLSv1.3,TLSv1.2

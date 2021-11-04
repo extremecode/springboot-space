@@ -176,7 +176,7 @@
                                     <DEPLOYMENT_CONF_DIR>${app.install.dir}/conf</DEPLOYMENT_CONF_DIR>
                                     <DEPLOYMENT_LOG_DIR>${app.install.dir}/log</DEPLOYMENT_LOG_DIR>
                                     <DEPLOYMENT_LIB_DIR>${app.install.dir}/lib</DEPLOYMENT_LIB_DIR>
-                                    <DE_LAUNCH_LOG_PREFIX>de-auth-server</DE_LAUNCH_LOG_PREFIX>
+                                    <DE_LAUNCH_LOG_PREFIX>${product.image.name}</DE_LAUNCH_LOG_PREFIX>
                                     <DE_STARTUP_DIR>${app.install.dir}/startup</DE_STARTUP_DIR>
                                     <DE_BOOT>${app.install.dir}/startup/boot.d</DE_BOOT>
                                 </env>
