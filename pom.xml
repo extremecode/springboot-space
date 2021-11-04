@@ -23,6 +23,7 @@
         <server.assemble.dir>${project.build.directory}/assemble</server.assemble.dir>
         <product.image.name>${product.abbreavtion}-auth-server</product.image.name>
         <app.install.dir>/opt/DE</app.install.dir>
+        <app.mount.dir>/var/opt/DE</app.mount.dir>
         <build.timestamp>${maven.build.timestamp}</build.timestamp>
     </properties>
 
