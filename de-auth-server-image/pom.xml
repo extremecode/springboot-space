@@ -132,7 +132,7 @@
                                     <artifactId>de-auth-server-lib</artifactId>
                                     <version>${project.version}</version>
                                     <overWrite>false</overWrite>
-                                    <outputDirectory>${server.assemble.dir}</outputDirectory>
+                                    <outputDirectory>${server.assemble.dir}/lib</outputDirectory>
                                     <destFileName>app.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
@@ -173,6 +173,9 @@
                                     <IMAGE_BUILD_NUMBER>1.0.1</IMAGE_BUILD_NUMBER>
                                     <IMAGE_BUILD_TIMESTAMP>${build.timestamp}</IMAGE_BUILD_TIMESTAMP>
                                     <DEPLOYMENT_INSTALL_DIR>${app.install.dir}</DEPLOYMENT_INSTALL_DIR>
+                                    <DEPLOYMENT_CONF_DIR>${app.install.dir}/conf</DEPLOYMENT_CONF_DIR>
+                                    <DEPLOYMENT_LOG_DIR>${app.install.dir}/log</DEPLOYMENT_LOG_DIR>
+                                    <DEPLOYMENT_LIB_DIR>${app.install.dir}/lib</DEPLOYMENT_LIB_DIR>
                                     <DE_BOOT>${app.install.dir}/startup/boot.d</DE_BOOT>
                                 </env>
                                 <volumes>
@@ -181,6 +184,9 @@
                                 <optimise>true</optimise>
                                 <runCmds>
                                     <run>mkdir -p ${app.install.dir}</run>
+                                    <run>mkdir -p ${app.install.dir}/conf</run>
+                                    <run>mkdir -p ${app.install.dir}/log</run>
+                                    <run>mkdir -p ${app.install.dir}/lib</run>
                                     <run>mkdir -p /var${app.install.dir}</run>
                                     <run>addgroup -g 2000 -S deuser</run>
                                     <run>adduser -u 2000 -S deuser -G deuser -h ${app.install.dir}</run>
