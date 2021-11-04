@@ -23,7 +23,7 @@ fi
 
 
 echo "`date +\"%F %T\"` [INFO] Starting DE AUTH server..."
-exec ${JAVA_HOME}/jre/bin/java -Dloader.path=file:$DEPLOYMENT_CONF_DIR/  -Djavax.net.ssl.trustStorePassword=dataelicit@01 -Djavax.net.ssl.trustStore=$DEPLOYMENT_CONF_DIR/de.truststore  -cp $DEPLOYMENT_LIB_DIR/app.jar org.springframework.boot.loader.PropertiesLauncher
+exec ${JAVA_HOME}/jre/bin/java  -Djavax.net.ssl.trustStorePassword=dataelicit@01 -Djavax.net.ssl.trustStore=$DEPLOYMENT_CONF_DIR/de.truststore  -jar $DEPLOYMENT_LIB_DIR/app.jar --spring.config.location=file:$DEPLOYMENT_CONF_DIR/
 
 
 
