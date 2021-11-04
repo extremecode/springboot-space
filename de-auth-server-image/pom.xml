@@ -180,7 +180,7 @@
                                     <DE_LOG_APP_LEVEL>INFO</DE_LOG_APP_LEVEL>
                                     <DE_LOG_MAX_FILE_SIZE>50MB</DE_LOG_MAX_FILE_SIZE>
                                     <DE_LOG_MAX_HISTORY>10</DE_LOG_MAX_HISTORY>
-                                    <DE_LOG_PATTERN>[${product.image.name}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%clr(%5p)]</DE_LOG_PATTERN>
+                                    <DE_LOG_PATTERN>[${product.image.name}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%clr(%4p)]</DE_LOG_PATTERN>
                                     <DE_APP_NAME>${product.image.name}</DE_APP_NAME>
                                     <DE_LAUNCH_LOG_PREFIX>${product.image.name}</DE_LAUNCH_LOG_PREFIX>
                                     <DE_STARTUP_DIR>${app.install.dir}/startup</DE_STARTUP_DIR>
