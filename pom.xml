@@ -31,6 +31,8 @@
         <module>de-auth-server-image</module>
     </modules>
 
+         
+         
     <dependencies>
 
         <dependency>
@@ -40,6 +42,7 @@
             <scope>test</scope>
         </dependency>
 
+             
 
     </dependencies>
 
